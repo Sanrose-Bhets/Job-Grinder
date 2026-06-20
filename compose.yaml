@@ -6,3 +6,29 @@ services:
       - "9000:9000"
     env_file:
       - .env
+  postgres:
+    image: postgres:latest
+    container_name: postgress-task-scheduler
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: task_scheduler_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-task-scheduler
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8090:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local

@@ -64,10 +64,11 @@ func main() {
 
 	v1Router := chi.NewRouter()
 
-	v1Router.HandleFunc("/health", readinessHandler)
-	v1Router.HandleFunc("/err", errorHandler)
+	v1Router.Get("/health", readinessHandler)
+	v1Router.Get("/err", errorHandler)
 
-	v1Router.HandleFunc("/accounts", apiCfg.accountCreateHandler)
+	v1Router.Post("/accounts", apiCfg.accountCreateHandler)
+	v1Router.Post("/companies", apiCfg.companyCreateHandler)
 
 	//mounting the v1Router as to enable http request to server
 	router.Mount("/v1", v1Router)

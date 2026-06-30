@@ -24,6 +24,7 @@ type Application struct {
 	Company     int32
 	Position    int32
 	Interviewid sql.NullInt32
+	DateApplied time.Time
 }
 
 type Company struct {

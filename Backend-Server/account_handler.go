@@ -33,8 +33,9 @@ func (apiCfg *apiConfig) accountCreateHandler(w http.ResponseWriter, r *http.Req
 	})
 	if err != nil {
 		respondwithError(w, 400, fmt.Sprintf("Unable to create user: %v", err))
+		return
 	}
 
-	respondwithJson(w, 200, user)
+	respondwithJson(w, 200, databaseAcctoAcc(user))
 
 }

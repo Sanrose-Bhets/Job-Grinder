@@ -3,8 +3,8 @@ CREATE TABLE applications (
     id SERIAL PRIMARY KEY,
     department VARCHAR(255) NOT NULL,
     status VARCHAR(255) NOT NULL,
-    company INTEGER NOT NULL REFERENCES companies(companyId),
-    position VARCHAR(255) NOT NULL REFERENCES jobs(positionName),
+    company INT NOT NULL REFERENCES companies(companyId),
+    position INT NOT NULL REFERENCES jobs(postionId),
     interviewId INT REFERENCES Interviews(id)
 );
 

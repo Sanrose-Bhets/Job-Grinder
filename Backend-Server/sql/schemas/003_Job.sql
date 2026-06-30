@@ -1,7 +1,8 @@
--- +goose up
+-- +goose Up
 CREATE TABLE jobs (
-    positionName VARCHAR(255) PRIMARY KEY,
-    companyId INTEGER NOT NULL REFERENCES companies(companyId),
+    postionId SERIAL PRIMARY KEY,
+    positionName VARCHAR(255) NOT NULL,
+    companyId INT NOT NULL REFERENCES companies(companyId),
     experienceRequired VARCHAR(255) NOT NULL,
     expectedCompensation VARCHAR(255) NOT NULL,
     employmentType VARCHAR(255) NOT NULL,
@@ -10,5 +11,5 @@ CREATE TABLE jobs (
 
 
 
--- +goose down
+-- +goose Down
 DROP TABLE jobs;

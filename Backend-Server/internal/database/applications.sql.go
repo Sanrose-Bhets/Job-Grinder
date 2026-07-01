@@ -11,35 +11,38 @@ import (
 )
 
 const createApplications = `-- name: CreateApplications :one
-INSERT INTO applications( department, status, company, position, interviewId)
-VALUES($1, $2, $3,$4, $5)
-RETURNING id, department, status, company, position, interviewid, date_applied
+INSERT INTO applications( department, status, companyid, positionid, interviewId, userid)
+VALUES($1, $2, $3,$4, $5, $6)
+RETURNING id, department, status, companyid, positionid, interviewid, userid, date_applied
 `
 
 type CreateApplicationsParams struct {
 	Department  string
 	Status      string
-	Company     int32
-	Position    int32
+	Companyid   int32
+	Positionid  int32
 	Interviewid sql.NullInt32
+	Userid      int32
 }
 
 func (q *Queries) CreateApplications(ctx context.Context, arg CreateApplicationsParams) (Application, error) {
 	row := q.db.QueryRowContext(ctx, createApplications,
 		arg.Department,
 		arg.Status,
-		arg.Company,
-		arg.Position,
+		arg.Companyid,
+		arg.Positionid,
 		arg.Interviewid,
+		arg.Userid,
 	)
 	var i Application
 	err := row.Scan(
 		&i.ID,
 		&i.Department,
 		&i.Status,
-		&i.Company,
-		&i.Position,
+		&i.Companyid,
+		&i.Positionid,
 		&i.Interviewid,
+		&i.Userid,
 		&i.DateApplied,
 	)
 	return i, err

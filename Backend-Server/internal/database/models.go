@@ -21,9 +21,10 @@ type Application struct {
 	ID          int32
 	Department  string
 	Status      string
-	Company     int32
-	Position    int32
+	Companyid   int32
+	Positionid  int32
 	Interviewid sql.NullInt32
+	Userid      int32
 	DateApplied time.Time
 }
 

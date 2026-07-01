@@ -18,6 +18,7 @@ func (apiCfg *apiConfig) applicationCreateHandler(w http.ResponseWriter, r *http
 		Company     int32  `json:"company"`
 		Position    int32  `json:"position"`
 		InterviewId int32  `json:"interviewId"`
+		UserId      int32  `json:"userId"`
 	}
 
 	decode := json.NewDecoder(r.Body)
@@ -32,12 +33,13 @@ func (apiCfg *apiConfig) applicationCreateHandler(w http.ResponseWriter, r *http
 	app, err := apiCfg.DB.CreateApplications(r.Context(), database.CreateApplicationsParams{
 		Department: param.Department,
 		Status:     param.Status,
-		Company:    param.Company,
-		Position:   param.Position,
+		Companyid:  param.Company,
+		Positionid: param.Position,
 		Interviewid: sql.NullInt32{
 			Int32: param.InterviewId,
 			Valid: param.InterviewId != 0,
 		},
+		Userid: param.UserId,
 	})
 	if err != nil {
 		respondwithError(w, 400, fmt.Sprintf("Unable to create application: %v", err))

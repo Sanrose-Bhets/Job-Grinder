@@ -81,8 +81,8 @@ func databaseAppToApp(dbUser database.Application) Application {
 		ID:          dbUser.ID,
 		Department:  dbUser.Department,
 		Status:      dbUser.Status,
-		Company:     dbUser.Company,
-		Position:    dbUser.Position,
+		Company:     dbUser.Companyid,
+		Position:    dbUser.Positionid,
 		Interviewid: dbUser.Interviewid,
 		DateApplied: dbUser.DateApplied,
 	}

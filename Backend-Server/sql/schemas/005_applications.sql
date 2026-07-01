@@ -5,7 +5,8 @@ CREATE TABLE applications (
     status VARCHAR(255) NOT NULL,
     companyid INT NOT NULL REFERENCES companies(companyId),
     positionid INT NOT NULL REFERENCES jobs(postionId),
-    interviewId INT REFERENCES Interviews(id)
+    interviewId INT REFERENCES Interviews(id),
+    userid INT NOT NULL REFERENCES accounts(id)
 );
 
 

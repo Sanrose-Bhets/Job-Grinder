@@ -1,6 +1,5 @@
 services:
   task-scheduler:
-    build: .
     image: ghcr.io/sanrose-bhets/my-job-grinder:latest
     ports:
       - "9000:9000"
